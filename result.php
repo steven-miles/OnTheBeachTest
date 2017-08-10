@@ -40,7 +40,9 @@
 		foreach($textarray as &$value){
 			$leftvalue = substr(trim($value), 0, 1);
 			$rightvalue = substr(trim($value), -1);
-			if( $leftvalue == $rightvalue){
+			if(trim($leftvalue) == ""){
+				$error = 3;
+			}else if( $leftvalue == $rightvalue){
 				//if a task depends upon itself
 				$error = 1;
 			}else if (substr(trim($text), -1) != ">"){
@@ -79,6 +81,9 @@
 		} elseif($error == 2){
 			//error code for circular dependancies
 			echo("Jobs can't have circular dependancies");	
+		} elseif($error == 3){
+			//blank string
+			echo("");
 		}
     ?>
 </body>
